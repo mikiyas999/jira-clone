@@ -17,9 +17,10 @@ import {
 
 import { type LoginSchema, loginSchema } from "../schema";
 import { DottedSeparator } from "@/components/dotted-separater";
+import { useLogin } from "../api/use-login";
 
 export const SignInCard = () => {
-  const isPending = false;
+  const { mutate, isPending } = useLogin();
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -29,6 +30,7 @@ export const SignInCard = () => {
   });
 
   const onSubmit = (values: LoginSchema) => {
+    mutate({ json: values });
     console.log(values);
   };
   return (

@@ -22,9 +22,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { type RegisterSchema, registerSchema } from "../schema";
 import { DottedSeparator } from "@/components/dotted-separater";
+import { useRegister } from "../api/use-register";
 
 export const SignUpCard = () => {
-  const isPending = false;
+  const { mutate, isPending } = useRegister();
   const form = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -35,6 +36,7 @@ export const SignUpCard = () => {
   });
 
   const onSubmit = (values: RegisterSchema) => {
+    mutate({ json: values });
     console.log(values);
   };
   return (
