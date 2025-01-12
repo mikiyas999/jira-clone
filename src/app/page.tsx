@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
+import { UserButton } from "@/features/auth/components/user-button";
 
-export default function Home() {
-  return <Button>Add</Button>;
+export default async function Home() {
+  return <UserButton />;
 }
