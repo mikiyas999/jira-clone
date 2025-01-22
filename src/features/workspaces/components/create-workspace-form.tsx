@@ -21,8 +21,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
-import { createWorkspaceSchema, CreateWorkspaceSchema } from "./schema";
-import { useCreateWorkspace } from "./api/use-create-workspace";
+import { createWorkspaceSchema, CreateWorkspaceSchema } from "../schema";
+import { useCreateWorkspace } from "../api/use-create-workspace";
 
 interface CreateWorkspaceFormProps {
   onCancel?: () => void;

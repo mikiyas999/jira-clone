@@ -14,6 +14,7 @@ import {
   MEMBERS_ID,
   WORKSPACE_ID,
 } from "@/lib/config";
+import { MemberRole } from "@/features/members/types";
 
 const app = new Hono()
   .get("/", sessionMiddleware, async (c) => {
@@ -85,7 +86,6 @@ const app = new Hono()
       const user = c.get("user");
 
       const { name, image } = c.req.valid("form");
-      console.log(name);
       let uploadedImage: string | undefined;
       if (image instanceof File) {
         const file = await storage.createFile(
@@ -113,6 +113,11 @@ const app = new Hono()
         }
       );
 
+      await databases.createDocument(DATABASE_ID, MEMBERS_ID, ID.unique(), {
+        userId: user.$id,
+        workspaceId: workspace.$id,
+        role: MemberRole.ADMIN,
+      });
       return c.json({ data: workspace });
     }
   );
