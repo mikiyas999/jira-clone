@@ -9,6 +9,7 @@ import {
 } from "react-icons/go";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 const router = [
   {
     label: "Home",
@@ -37,10 +38,11 @@ const router = [
 ];
 export const Navigation = () => {
   const pathname = usePathname();
+  const workspaceId = useWorkspaceId();
   return (
     <ul className="flex flex-col">
       {router.map(({ aciveIcon, href, icon, label }) => {
-        const absoluteHref = `/workspaces/${123}${href}`;
+        const absoluteHref = `/workspaces/${workspaceId}${href}`;
         const isActive = pathname === absoluteHref;
         const Icon = isActive ? aciveIcon : icon;
         return (
