@@ -40,6 +40,7 @@ export const ProjectIdClient = () => {
           </Link>
         </Button>
       </div>
+      {/* <TaskViewSwitcher hideProjectFilter /> */}
     </div>
   );
 };
