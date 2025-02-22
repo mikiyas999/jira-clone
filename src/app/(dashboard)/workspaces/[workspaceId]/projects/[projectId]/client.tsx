@@ -8,6 +8,7 @@ import { PageError } from "@/components/page-error";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 import { useProjectId } from "@/features/projects/hooks/use-projectId";
 import { useGetProject } from "@/features/projects/api/use-get-project";
+import { TaskViewSwitcher } from "@/features/tasks/components/task-view-switcher";
 
 export const ProjectIdClient = () => {
   const projectId = useProjectId();
@@ -40,7 +41,7 @@ export const ProjectIdClient = () => {
           </Link>
         </Button>
       </div>
-      {/* <TaskViewSwitcher hideProjectFilter /> */}
+      <TaskViewSwitcher hideProjectFilter />
     </div>
   );
 };

@@ -10,8 +10,9 @@ import { createAdminClient } from "@/lib/appwrite";
 
 import { Task, TaskStatus } from "../types";
 import { Project } from "@/features/projects/types";
-import { createTaskSchema } from "../schema";
 import { DATABASE_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from "@/lib/config";
+import { createTaskSchema } from "../schema";
+
 const app = new Hono()
   .delete("/:taskId", sessionMiddleware, async (c) => {
     const databases = c.get("databases");
