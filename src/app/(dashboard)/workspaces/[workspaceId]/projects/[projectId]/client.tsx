@@ -9,14 +9,18 @@ import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 import { useProjectId } from "@/features/projects/hooks/use-projectId";
 import { useGetProject } from "@/features/projects/api/use-get-project";
 import { TaskViewSwitcher } from "@/features/tasks/components/task-view-switcher";
+import { useGetProjectAnalytics } from "@/features/projects/api/use-get-project-analytics";
+import { Analytics } from "@/components/analytics";
 
 export const ProjectIdClient = () => {
   const projectId = useProjectId();
   const { data: project, isLoading: projectsLoading } = useGetProject({
     projectId,
   });
+  const { data: analytics, isLoading: analyticsLoading } =
+    useGetProjectAnalytics({ projectId });
 
-  const isLoading = projectsLoading;
+  const isLoading = projectsLoading || analyticsLoading;
 
   if (isLoading) return <PageLoader />;
   if (!project) return <PageError message="Project not found" />;
@@ -41,6 +45,7 @@ export const ProjectIdClient = () => {
           </Link>
         </Button>
       </div>
+      {analytics ? <Analytics data={analytics} /> : null}
       <TaskViewSwitcher hideProjectFilter />
     </div>
   );
